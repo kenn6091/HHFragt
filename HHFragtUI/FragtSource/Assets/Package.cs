@@ -8,17 +8,17 @@ namespace FragtSource
 {
     public class Package
     {
-        public string dato { get; set; }
+        public string date { get; set; }
         public string type { get; set; }
-        public string udland { get; set; }
-        public string pris { get; set; }
-        public string kommentar { get; set; }
+        public string country { get; set; }
+        public string price { get; set; }
+        public string comment { get; set; }
 
         public Package()
         {
-            udland = "";
-            pris = "";
-            kommentar = "";
+            country = "";
+            price = "";
+            comment = "";
         }
     }
 }

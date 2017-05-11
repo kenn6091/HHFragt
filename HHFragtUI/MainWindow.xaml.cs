@@ -12,23 +12,39 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FragtSource;
 
 namespace HHFragtUI {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow:Window {
-        public MainWindow() {
+    public partial class MainWindow:Window
+    {
+        PackageListController PLC;
+
+        public MainWindow()
+        {
+            PLC = new PackageListController();
+            List<Package> packageList = new List<Package>();
+            packageList = FetchPackageListFromController();
+
             InitializeComponent();
+
+            packageDatagrid.ItemsSource = packageList;
         }
 
-        private void Btn_gem(object sender, RoutedEventArgs e) {
+        private void Btn_gem(object sender, RoutedEventArgs e)
+        {
             UdkastDato.Text = DatoInput.Text;
             UdkastType.Text = TypeInput.SelectedValue.ToString();
             UdkastLand.Text = LandInput.Text;
             UdkastPris.Text = PrisInput.Text;
             UdkastKommentar.Text = KommentarInput.Text;
-            
+        }
+
+        private List<Package> FetchPackageListFromController()
+        {
+            return PLC.ReturnPackageList();
         }
     }
 }
