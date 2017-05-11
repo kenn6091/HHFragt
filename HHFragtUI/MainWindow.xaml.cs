@@ -21,5 +21,10 @@ namespace HHFragtUI {
         public MainWindow() {
             InitializeComponent();
         }
+
+        private void Btn_gem(object sender, RoutedEventArgs e) {
+            UdkastDato.Text = DatoInput.Text;
+            
+        }
     }
 }

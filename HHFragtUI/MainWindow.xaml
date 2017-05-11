@@ -5,8 +5,118 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HHFragtUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
+        Title="Fragt" Height="600" Width="1000">
+    <Grid Background="#F0F0F0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="#DCDCDC"/>
+
+        <Border Grid.Column="0" BorderBrush="#A5A5A5" BorderThickness="0,2,2,2"/>
+        <Border Grid.Column="1" BorderBrush="#A5A5A5" BorderThickness="0,2,2,2"/>
+        <Border Grid.Column="0" Grid.Row="1" BorderBrush="#A5A5A5" BorderThickness="0,0,2,0"/>
+        <Border Grid.Column="1" Grid.Row="1" BorderBrush="#A5A5A5" BorderThickness="0,0,2,0"/>
+
+        <!-- Top LEFT-->
+        <Label Grid.Row="0" Grid.Column="0" Content="Ny Fragt" FontWeight="Bold"/>
         
+        <!-- TOP RIGHT -->
+        <Label Grid.Row="0" Grid.Column="1" Content="Søg Fragt" FontWeight="Bold"/>
+
+        <!-- BOTTOM LEFT-->
+        <Border Grid.Column="0" Grid.Row="1" Margin="20, 10, 20, 0">
+            <StackPanel>
+                <!--Dato-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" Text="Dato*"/>
+                    <TextBlock Grid.Column="1" Text="* Skal Udfyldes"/>
+                </Grid>
+                <TextBox Padding="2" Margin="0, 0, 100, 0" Name="DatoInput"/>
+
+                <!-- Type -->
+                <TextBlock Text="Type*" Margin="0, 10, 0, 0"/>
+                <ComboBox Name="TypeInput">
+                    <ComboBoxItem IsSelected="True">M/Omdeling PostDanmark</ComboBoxItem>
+                    <ComboBoxItem>U/Omdeling PostDanmark</ComboBoxItem>
+                    <ComboBoxItem>GLS</ComboBoxItem>
+                </ComboBox>
+
+                <!-- Udland -->
+                <TextBlock Text="Udland" Margin="0, 10, 0, 0"/>
+                <TextBox Padding="2" Margin="0, 0, 100, 0"/>
+
+                <!-- Pris -->
+                <TextBlock Text="Pris" Margin="0, 10, 0, 0"/>
+                <TextBox Padding="2" Margin="0, 0, 200, 0"/>
+
+                <!-- Evt. Kommentar -->
+                <TextBlock Text="Kommentar" Margin="0, 10, 0, 0"/>
+                <TextBox Padding="2" Margin="0, 0, 100, -50"/>
+
+                <!-- Udkast -->
+                <TextBlock Text="Udkast" Margin="0, 80, 0, 0"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Border Background="White" Margin="0, 0, 0, 0">
+                        <StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="Dato: " Margin="5, 0, 0, 0"/>
+                                <TextBlock Grid.Column="1" Name="UdkastDato" Text="Placeholder" />
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="Type: " Margin="5, 0, 0, 0"/>
+                                <TextBlock Grid.Column="1" Name="UdkastType" Text="Placeholder" />
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="Land: " Margin="5, 0, 0, 0"/>
+                                <TextBlock Grid.Column="1" Name="UdkastLand" Text="Placeholder" />
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="Pris: " Margin="5, 0, 0, 0"/>
+                                <TextBlock Grid.Column="1" Name="UdkastPris" Text="Placeholder" />
+                            </Grid>
+                            <TextBlock Text="Kommentar: " Margin="5, 10, 0, 0"/>
+                            <TextBlock Name="UdkastKommentar" Text="Placeholder" Margin="5, 0, 0, 0"/>
+                        </StackPanel>
+                    </Border>
+                    
+                    <!-- Gem Button -->
+                    <Button Grid.Column="1" Content="Gem" Margin="5, 190, 0, 0" Click="Btn_gem"/>
+                </Grid>
+            </StackPanel>
+        </Border>
+
     </Grid>
 </Window>
