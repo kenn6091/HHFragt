@@ -47,7 +47,7 @@
 
                 <!-- Type -->
                 <TextBlock Text="Type*" Margin="0, 10, 0, 0"/>
-                <ComboBox Name="TypeInput">
+                <ComboBox Name="TypeInput" SelectedValuePath="Content">
                     <ComboBoxItem IsSelected="True">M/Omdeling PostDanmark</ComboBoxItem>
                     <ComboBoxItem>U/Omdeling PostDanmark</ComboBoxItem>
                     <ComboBoxItem>GLS</ComboBoxItem>
@@ -55,15 +55,15 @@
 
                 <!-- Udland -->
                 <TextBlock Text="Udland" Margin="0, 10, 0, 0"/>
-                <TextBox Padding="2" Margin="0, 0, 100, 0"/>
+                <TextBox Padding="2" Margin="0, 0, 100, 0" Name="LandInput"/>
 
                 <!-- Pris -->
                 <TextBlock Text="Pris" Margin="0, 10, 0, 0"/>
-                <TextBox Padding="2" Margin="0, 0, 200, 0"/>
+                <TextBox Padding="2" Margin="0, 0, 200, 0" Name="PrisInput"/>
 
                 <!-- Evt. Kommentar -->
                 <TextBlock Text="Kommentar" Margin="0, 10, 0, 0"/>
-                <TextBox Padding="2" Margin="0, 0, 100, -50"/>
+                <TextBox Padding="2" Margin="0, 0, 100, -50" Name="KommentarInput"/>
 
                 <!-- Udkast -->
                 <TextBlock Text="Udkast" Margin="0, 80, 0, 0"/>
