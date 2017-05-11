@@ -24,6 +24,10 @@ namespace HHFragtUI {
 
         private void Btn_gem(object sender, RoutedEventArgs e) {
             UdkastDato.Text = DatoInput.Text;
+            UdkastType.Text = TypeInput.SelectedValue.ToString();
+            UdkastLand.Text = LandInput.Text;
+            UdkastPris.Text = PrisInput.Text;
+            UdkastKommentar.Text = KommentarInput.Text;
             
         }
     }
