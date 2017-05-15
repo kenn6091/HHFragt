@@ -20,12 +20,10 @@ namespace HHFragtUI {
     /// </summary>
     public partial class MainWindow:Window
     {
-        PackageListController PLC;
-
+        public List<Package> packageList = new List<Package>();
+        public PackageListController PLC = new PackageListController();
         public MainWindow()
         {
-            PLC = new PackageListController();
-            List<Package> packageList = new List<Package>();
             packageList = FetchPackageListFromController();
 
             InitializeComponent();
@@ -35,11 +33,11 @@ namespace HHFragtUI {
 
         private void Btn_gem(object sender, RoutedEventArgs e)
         {
-            UdkastDato.Text = DatoInput.Text;
-            UdkastType.Text = TypeInput.SelectedValue.ToString();
-            UdkastLand.Text = LandInput.Text;
-            UdkastPris.Text = PrisInput.Text;
-            UdkastKommentar.Text = KommentarInput.Text;
+            
+            PLC.packageList.Add(PLC.GenerateRandomPackage());
+            packageList = FetchPackageListFromController();
+            packageDatagrid.ItemsSource = packageList;
+            packageDatagrid.Items.Refresh();
         }
 
         private void DeleteBtn(object sender, RoutedEventArgs e)

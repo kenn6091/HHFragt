@@ -31,7 +31,7 @@ namespace FragtSource
             }
         }
 
-        private Package GenerateRandomPackage()
+        public Package GenerateRandomPackage()
         {
             Package randompackage = new Package();
             randompackage.date = rnd.Next(10, 99) + "/" + rnd.Next(10, 99) + "/" + rnd.Next(1000, 9999);
