@@ -8,7 +8,6 @@ namespace FragtSource
 {
     class PackageListController
     {
-        private Random rnd = new Random();
         public List<Package> packageList;
 
         public PackageListController()
@@ -33,7 +32,7 @@ namespace FragtSource
 
         private Package GenerateRandomPackage()
         {
-            
+            Random rnd = new Random();
             Package randompackage = new Package();
 
             randompackage.date = rnd.Next(10, 99) + "/" + rnd.Next(10, 99) + "/" + rnd.Next(1000, 9999);
