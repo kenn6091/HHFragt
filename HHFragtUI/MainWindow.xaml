@@ -169,7 +169,13 @@
                 </Grid>
                 
                 <!-- Display packages in datagrid -->
-                <DataGrid Name="packageDatagrid" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" AutoGenerateColumns="True" Height="400" IsReadOnly="True" Margin="0, 5, 0, 0"/>
+                <DataGrid Name="packageDatagrid" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" AutoGenerateColumns="True" Height="400" IsReadOnly="True" Margin="0, 5, 0, 0">
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Delete" Click="DeleteBtn" />
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+                </DataGrid>
                 
                 <!-- Total packages sent and Total price -->
                 <Border Background="White" Margin="0, 20, 0, 0">

@@ -13,6 +13,7 @@ namespace FragtSource
         public string country { get; set; }
         public string price { get; set; }
         public string comment { get; set; }
+        private int Id { get; set; }
 
         public Package()
         {

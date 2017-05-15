@@ -38,6 +38,11 @@ namespace HHFragtUI {
             
         }
 
+        private void DeleteBtn(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private List<Package> FetchPackageListFromController()
         {
             return PLC.ReturnPackageList();
