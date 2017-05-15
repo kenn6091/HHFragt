@@ -8,18 +8,18 @@ namespace FragtSource
 {
     public class Package
     {
-        public string date { get; set; }
-        public string type { get; set; }
-        public string country { get; set; }
-        public string price { get; set; }
-        public string comment { get; set; }
         private int Id { get; set; }
+        public string Date { get; set; }
+        public string Type { get; set; }
+        public string Country { get; set; }
+        public string Price { get; set; }
+        public string Comment { get; set; }
 
         public Package()
         {
-            country = "";
-            price = "";
-            comment = "";
+            Country = "";
+            Price = "";
+            Comment = "";
         }
     }
 }

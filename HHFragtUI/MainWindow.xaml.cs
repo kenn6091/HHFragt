@@ -33,16 +33,15 @@ namespace HHFragtUI {
 
         private void Btn_gem(object sender, RoutedEventArgs e)
         {
-            
             PLC.packageList.Add(PLC.GenerateRandomPackage());
             packageList = FetchPackageListFromController();
             packageDatagrid.ItemsSource = packageList;
             packageDatagrid.Items.Refresh();
         }
 
-        private void DeleteBtn(object sender, RoutedEventArgs e)
+        private void Btn_delete(object sender, RoutedEventArgs e)
         {
-
+            string firstCellValue = packageDatagrid.SelectedCells[0].Item.ToString();
         }
 
         private List<Package> FetchPackageListFromController()
