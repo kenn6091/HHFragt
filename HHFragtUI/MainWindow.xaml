@@ -4,12 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HHFragtUI"
-        xmlns:custom="clr-namespace:FragtSource;assembly=FragtSource"
+        xmlns:FragtSource="clr-namespace:FragtSource;assembly=FragtSource"
         mc:Ignorable="d"
         Title="Fragt" Height="600" Width="1000">
 
     <Window.Resources>
-        <custom:Package x:Key="myDataSource" date=""/>
+        <FragtSource:Package x:Key="myDataSource" date=""/>
     </Window.Resources>
 
     <Grid Background="#F0F0F0">
