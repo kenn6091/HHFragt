@@ -33,7 +33,14 @@ namespace HHFragtUI {
 
         private void Btn_gem(object sender, RoutedEventArgs e)
         {
-            PLC.packageList.Add(PLC.GenerateRandomPackage());
+            Package tempPackage = new Package();
+            tempPackage.Date = UdkastDato.Text;
+            tempPackage.Type = UdkastType.Text;
+            tempPackage.Country = UdkastCountry.Text;
+            tempPackage.Price = UdkastPrice.Text;
+            tempPackage.Comment = UdkastComment.Text;
+            
+            PLC.packageList.Add(tempPackage);
             packageList = FetchPackageListFromController();
             packageDatagrid.ItemsSource = packageList;
             packageDatagrid.Items.Refresh();
