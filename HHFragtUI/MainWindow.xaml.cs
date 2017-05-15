@@ -20,12 +20,10 @@ namespace HHFragtUI {
     /// </summary>
     public partial class MainWindow:Window
     {
-        PackageListController PLC;
-
+        public List<Package> packageList = new List<Package>();
+        public PackageListController PLC = new PackageListController();
         public MainWindow()
         {
-            PLC = new PackageListController();
-            List<Package> packageList = new List<Package>();
             packageList = FetchPackageListFromController();
 
             InitializeComponent();
@@ -35,7 +33,10 @@ namespace HHFragtUI {
 
         private void Btn_gem(object sender, RoutedEventArgs e)
         {
-            
+            PLC.packageList.Add(PLC.GenerateRandomPackage());
+            packageList = FetchPackageListFromController();
+            packageDatagrid.ItemsSource = packageList;
+            packageDatagrid.Items.Refresh();
         }
 
         private void Btn_delete(object sender, RoutedEventArgs e)
