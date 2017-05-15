@@ -4,8 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HHFragtUI"
+        xmlns:custom="clr-namespace:FragtSource;assembly=FragtSource"
         mc:Ignorable="d"
         Title="Fragt" Height="600" Width="1000">
+
+    <Window.Resources>
+        <custom:Package x:Key="myDataSource" date=""/>
+    </Window.Resources>
+
     <Grid Background="#F0F0F0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -26,7 +32,7 @@
 
         <!-- Top LEFT-->
         <Label Grid.Row="0" Grid.Column="0" Content="Ny Fragt" FontWeight="Bold"/>
-        
+
         <!-- TOP RIGHT -->
         <Label Grid.Row="0" Grid.Column="1" Content="Søg Fragt" FontWeight="Bold"/>
 
@@ -43,11 +49,18 @@
                     <TextBlock Grid.Column="0" Text="Dato*"/>
                     <TextBlock Grid.Column="1" Text="* Skal Udfyldes"/>
                 </Grid>
-                <TextBox Padding="2" Margin="0, 0, 100, 0" Name="DatoInput"/>
+                <TextBox Padding="2" Margin="0, 0, 100, 0" Name="DatoInput">
+                    <TextBox.Text>
+                        <Binding Source="{StaticResource ResourceKey=myDataSource}" Path="date" UpdateSourceTrigger="PropertyChanged"/>
+                    </TextBox.Text>
+                </TextBox>
 
                 <!-- Type -->
                 <TextBlock Text="Type*" Margin="0, 10, 0, 0"/>
                 <ComboBox Name="TypeInput" SelectedValuePath="Content">
+                    <ComboBox.Text>
+                        <Binding Source="{StaticResource ResourceKey=myDataSource}" Path="type" UpdateSourceTrigger="PropertyChanged"/>
+                    </ComboBox.Text>
                     <ComboBoxItem IsSelected="True">M/Omdeling PostDanmark</ComboBoxItem>
                     <ComboBoxItem>U/Omdeling PostDanmark</ComboBoxItem>
                     <ComboBoxItem>GLS</ComboBoxItem>
@@ -55,15 +68,27 @@
 
                 <!-- Udland -->
                 <TextBlock Text="Udland" Margin="0, 10, 0, 0"/>
-                <TextBox Padding="2" Margin="0, 0, 100, 0" Name="LandInput"/>
+                <TextBox Padding="2" Margin="0, 0, 100, 0" Name="LandInput">
+                    <TextBox.Text>
+                        <Binding Source="{StaticResource ResourceKey=myDataSource}" Path="country" UpdateSourceTrigger="PropertyChanged"/>
+                    </TextBox.Text>
+                </TextBox>
 
                 <!-- Pris -->
                 <TextBlock Text="Pris" Margin="0, 10, 0, 0"/>
-                <TextBox Padding="2" Margin="0, 0, 200, 0" Name="PrisInput"/>
+                <TextBox Padding="2" Margin="0, 0, 200, 0" Name="PrisInput">
+                    <TextBox.Text>
+                        <Binding Source="{StaticResource ResourceKey=myDataSource}" Path="price" UpdateSourceTrigger="PropertyChanged"/>
+                    </TextBox.Text>
+                </TextBox>
 
                 <!-- Evt. Kommentar -->
                 <TextBlock Text="Kommentar" Margin="0, 10, 0, 0"/>
-                <TextBox Padding="2" Margin="0, 0, 100, -50" Name="KommentarInput"/>
+                <TextBox Padding="2" Margin="0, 0, 100, -50" Name="KommentarInput">
+                    <TextBox.Text>
+                        <Binding Source="{StaticResource ResourceKey=myDataSource}" Path="comment" UpdateSourceTrigger="PropertyChanged"/>
+                    </TextBox.Text>
+                </TextBox>
 
                 <!-- Udkast -->
                 <TextBlock Text="Udkast" Margin="0, 80, 0, 0"/>
@@ -81,7 +106,7 @@
                                     <ColumnDefinition Width="2*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Dato: " Margin="5, 0, 0, 0"/>
-                                <TextBlock Grid.Column="1" Name="UdkastDato" Text="Placeholder" />
+                                <TextBlock Grid.Column="1" Name="UdkastDato" Text="{Binding Source={StaticResource ResourceKey=myDataSource}, Path=date}"/>
                             </Grid>
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -89,7 +114,7 @@
                                     <ColumnDefinition Width="2*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Type: " Margin="5, 0, 0, 0"/>
-                                <TextBlock Grid.Column="1" Name="UdkastType" Text="Placeholder" />
+                                <TextBlock Grid.Column="1" Name="UdkastType" Text="{Binding Source={StaticResource ResourceKey=myDataSource}, Path=type}" />
                             </Grid>
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -97,7 +122,7 @@
                                     <ColumnDefinition Width="2*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Land: " Margin="5, 0, 0, 0"/>
-                                <TextBlock Grid.Column="1" Name="UdkastLand" Text="Placeholder" />
+                                <TextBlock Grid.Column="1" Name="UdkastLand" Text="{Binding Source={StaticResource ResourceKey=myDataSource}, Path=country}" />
                             </Grid>
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -105,13 +130,13 @@
                                     <ColumnDefinition Width="2*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Pris: " Margin="5, 0, 0, 0"/>
-                                <TextBlock Grid.Column="1" Name="UdkastPris" Text="Placeholder" />
+                                <TextBlock Grid.Column="1" Name="UdkastPris" Text="{Binding Source={StaticResource ResourceKey=myDataSource}, Path=price}" />
                             </Grid>
                             <TextBlock Text="Kommentar: " Margin="5, 10, 0, 0"/>
-                            <TextBlock Name="UdkastKommentar" Text="Placeholder" Margin="5, 0, 0, 0"/>
+                            <TextBlock Name="UdkastKommentar" Text="{Binding Source={StaticResource ResourceKey=myDataSource}, Path=comment}" Margin="5, 0, 0, 0"/>
                         </StackPanel>
                     </Border>
-                    
+
                     <!-- Gem Button -->
                     <Button Grid.Column="1" Content="Gem" Margin="5, 190, 0, 0" Click="Btn_gem"/>
                 </Grid>
@@ -142,10 +167,16 @@
 
                     <Button Grid.Column="2" Grid.Row="1" Content="Søg" />
                 </Grid>
-                
+
                 <!-- Display packages in datagrid -->
-                <DataGrid Name="packageDatagrid" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" AutoGenerateColumns="True" Height="400" IsReadOnly="True" Margin="0, 5, 0, 0"/>
-                
+                <DataGrid Name="packageDatagrid" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" AutoGenerateColumns="True" Height="400" IsReadOnly="True" Margin="0, 5, 0, 0">
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Delete" Click="DeleteBtn" />
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+                </DataGrid>
+
                 <!-- Total packages sent and Total price -->
                 <Border Background="White" Margin="0, 20, 0, 0">
                     <Grid>
@@ -175,6 +206,6 @@
                 </Border>
             </StackPanel>
         </Border>
-        
+
     </Grid>
 </Window>
