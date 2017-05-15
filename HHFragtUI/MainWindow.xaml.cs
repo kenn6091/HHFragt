@@ -35,16 +35,12 @@ namespace HHFragtUI {
 
         private void Btn_gem(object sender, RoutedEventArgs e)
         {
-            UdkastDato.Text = DatoInput.Text;
-            UdkastType.Text = TypeInput.SelectedValue.ToString();
-            UdkastLand.Text = LandInput.Text;
-            UdkastPris.Text = PrisInput.Text;
-            UdkastKommentar.Text = KommentarInput.Text;
+            
         }
 
-        private void DeleteBtn(object sender, RoutedEventArgs e)
+        private void Btn_delete(object sender, RoutedEventArgs e)
         {
-
+            string firstCellValue = packageDatagrid.SelectedCells[0].Item.ToString();
         }
 
         private List<Package> FetchPackageListFromController()

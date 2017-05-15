@@ -34,11 +34,11 @@ namespace FragtSource
         private Package GenerateRandomPackage()
         {
             Package randompackage = new Package();
-            randompackage.date = rnd.Next(10, 99) + "/" + rnd.Next(10, 99) + "/" + rnd.Next(1000, 9999);
-            randompackage.type = GenerateRandomType(rnd.Next(1, 3));
-            randompackage.country = GenerateRandomCountry(rnd.Next(1, 3));
-            randompackage.price = rnd.Next(1, 99).ToString();
-            randompackage.comment = "No comment";
+            randompackage.Date = rnd.Next(10, 99) + "/" + rnd.Next(10, 99) + "/" + rnd.Next(1000, 9999);
+            randompackage.Type = GenerateRandomType(rnd.Next(1, 3));
+            randompackage.Country = GenerateRandomCountry(rnd.Next(1, 3));
+            randompackage.Price = rnd.Next(1, 99).ToString();
+            randompackage.Comment = "No comment";
 
             return randompackage;
         }
