@@ -42,6 +42,11 @@ namespace HHFragtUI {
             UdkastKommentar.Text = KommentarInput.Text;
         }
 
+        private void DeleteBtn(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private List<Package> FetchPackageListFromController()
         {
             return PLC.ReturnPackageList();

@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace FragtSource
 {
-    class PackageListController
+    public class PackageListController
     {
+        public Random rnd = new Random();
         public List<Package> packageList;
 
         public PackageListController()
@@ -32,9 +33,7 @@ namespace FragtSource
 
         private Package GenerateRandomPackage()
         {
-            Random rnd = new Random();
             Package randompackage = new Package();
-
             randompackage.date = rnd.Next(10, 99) + "/" + rnd.Next(10, 99) + "/" + rnd.Next(1000, 9999);
             randompackage.type = GenerateRandomType(rnd.Next(1, 3));
             randompackage.country = GenerateRandomCountry(rnd.Next(1, 3));
