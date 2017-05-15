@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FragtSource;
+using System.Data;
 
 namespace HHFragtUI {
     /// <summary>
@@ -47,7 +48,9 @@ namespace HHFragtUI {
 
         private void Btn_delete(object sender, RoutedEventArgs e)
         {
-            string firstCellValue = packageDatagrid.SelectedCells[0].Item.ToString();
+            Package selectedPackage = (Package)packageDatagrid.SelectedItems[0];
+            PLC.DeletePackageById(selectedPackage.Id);
+            packageDatagrid.Items.Refresh();
         }
 
         private List<Package> FetchPackageListFromController()
