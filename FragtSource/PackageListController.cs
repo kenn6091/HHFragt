@@ -36,7 +36,7 @@ namespace FragtSource
 
         public void DeletePackageById(int Id)
         {
-            foreach (var package in packageList)
+            foreach (var package in packageList.ToList())
             {
                 if (package.Id == Id)
                 {
