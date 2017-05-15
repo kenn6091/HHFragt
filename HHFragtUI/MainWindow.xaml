@@ -9,7 +9,6 @@
         Title="Fragt" Height="600" Width="1000">
 
     <Window.Resources>
-
         <FragtSource:Package x:Key="myDataSource"/>
     </Window.Resources>
 
@@ -52,7 +51,7 @@
                 </Grid>
                 <TextBox Padding="2" Margin="0, 0, 100, 0" Name="DatoInput">
                     <TextBox.Text>
-                        <Binding Source="{StaticResource ResourceKey=myDataSource}" Path="date" UpdateSourceTrigger="PropertyChanged"/>
+                        <Binding Source="{StaticResource ResourceKey=myDataSource}" Path="Date" UpdateSourceTrigger="PropertyChanged"/>
                     </TextBox.Text>
                 </TextBox>
 
@@ -60,7 +59,7 @@
                 <TextBlock Text="Type*" Margin="0, 10, 0, 0"/>
                 <ComboBox Name="TypeInput" SelectedValuePath="Content">
                     <ComboBox.Text>
-                        <Binding Source="{StaticResource ResourceKey=myDataSource}" Path="type" UpdateSourceTrigger="PropertyChanged"/>
+                        <Binding Source="{StaticResource ResourceKey=myDataSource}" Path="Type" UpdateSourceTrigger="PropertyChanged"/>
                     </ComboBox.Text>
                     <ComboBoxItem IsSelected="True">M/Omdeling PostDanmark</ComboBoxItem>
                     <ComboBoxItem>U/Omdeling PostDanmark</ComboBoxItem>
@@ -71,7 +70,7 @@
                 <TextBlock Text="Udland" Margin="0, 10, 0, 0"/>
                 <TextBox Padding="2" Margin="0, 0, 100, 0" Name="LandInput">
                     <TextBox.Text>
-                        <Binding Source="{StaticResource ResourceKey=myDataSource}" Path="country" UpdateSourceTrigger="PropertyChanged"/>
+                        <Binding Source="{StaticResource ResourceKey=myDataSource}" Path="Country" UpdateSourceTrigger="PropertyChanged"/>
                     </TextBox.Text>
                 </TextBox>
 
@@ -79,7 +78,7 @@
                 <TextBlock Text="Pris" Margin="0, 10, 0, 0"/>
                 <TextBox Padding="2" Margin="0, 0, 200, 0" Name="PrisInput">
                     <TextBox.Text>
-                        <Binding Source="{StaticResource ResourceKey=myDataSource}" Path="price" UpdateSourceTrigger="PropertyChanged"/>
+                        <Binding Source="{StaticResource ResourceKey=myDataSource}" Path="Price" UpdateSourceTrigger="PropertyChanged"/>
                     </TextBox.Text>
                 </TextBox>
 
@@ -87,7 +86,7 @@
                 <TextBlock Text="Kommentar" Margin="0, 10, 0, 0"/>
                 <TextBox Padding="2" Margin="0, 0, 100, -50" Name="KommentarInput">
                     <TextBox.Text>
-                        <Binding Source="{StaticResource ResourceKey=myDataSource}" Path="comment" UpdateSourceTrigger="PropertyChanged"/>
+                        <Binding Source="{StaticResource ResourceKey=myDataSource}" Path="Comment" UpdateSourceTrigger="PropertyChanged"/>
                     </TextBox.Text>
                 </TextBox>
 
@@ -107,7 +106,7 @@
                                     <ColumnDefinition Width="2*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Dato: " Margin="5, 0, 0, 0"/>
-                                <TextBlock Grid.Column="1" Name="UdkastDato" Text="{Binding Source={StaticResource ResourceKey=myDataSource}, Path=date}"/>
+                                <TextBlock Grid.Column="1" Name="UdkastDato" Text="{Binding Source={StaticResource ResourceKey=myDataSource}, Path=Date}"/>
                             </Grid>
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -115,7 +114,7 @@
                                     <ColumnDefinition Width="2*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Type: " Margin="5, 0, 0, 0"/>
-                                <TextBlock Grid.Column="1" Name="UdkastType" Text="{Binding Source={StaticResource ResourceKey=myDataSource}, Path=type}" />
+                                <TextBlock Grid.Column="1" Name="UdkastType" Text="{Binding Source={StaticResource ResourceKey=myDataSource}, Path=Type}" />
                             </Grid>
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -123,7 +122,7 @@
                                     <ColumnDefinition Width="2*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Land: " Margin="5, 0, 0, 0"/>
-                                <TextBlock Grid.Column="1" Name="UdkastLand" Text="{Binding Source={StaticResource ResourceKey=myDataSource}, Path=country}" />
+                                <TextBlock Grid.Column="1" Name="UdkastCountry" Text="{Binding Source={StaticResource ResourceKey=myDataSource}, Path=Country}" />
                             </Grid>
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -131,10 +130,10 @@
                                     <ColumnDefinition Width="2*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Pris: " Margin="5, 0, 0, 0"/>
-                                <TextBlock Grid.Column="1" Name="UdkastPris" Text="{Binding Source={StaticResource ResourceKey=myDataSource}, Path=price}" />
+                                <TextBlock Grid.Column="1" Name="UdkastPrice" Text="{Binding Source={StaticResource ResourceKey=myDataSource}, Path=Price}" />
                             </Grid>
                             <TextBlock Text="Kommentar: " Margin="5, 10, 0, 0"/>
-                            <TextBlock Name="UdkastKommentar" Text="{Binding Source={StaticResource ResourceKey=myDataSource}, Path=comment}" Margin="5, 0, 0, 0"/>
+                            <TextBlock Name="UdkastComment" Text="{Binding Source={StaticResource ResourceKey=myDataSource}, Path=Comment}" Margin="5, 0, 0, 0"/>
                         </StackPanel>
                     </Border>
 
