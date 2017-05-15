@@ -106,7 +106,7 @@
                                     <ColumnDefinition Width="2*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Dato: " Margin="5, 0, 0, 0"/>
-                                <TextBlock Grid.Column="1" Name="UdkastDato" Text="{Binding Source={StaticResource ResourceKey=myDataSource}, Path=Date}"/>
+                                <TextBlock Grid.Column="1" Name="UdkastDate" Text="{Binding Source={StaticResource ResourceKey=myDataSource}, Path=Date}"/>
                             </Grid>
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -195,13 +195,13 @@
                             </Grid.RowDefinitions>
 
                             <TextBlock Grid.Column="0" Text="Total" />
-                            <TextBlock Grid.Column="0" Grid.Row="1" Text="0" Name="TotalPackagesSent"/>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding ElementName=packageDatagrid, Path=Items.Count}" Name="TotalPackagesSent"/>
                             <TextBlock Grid.Column="1" Text="GLS" />
-                            <TextBlock Grid.Column="1" Grid.Row="1" Text="0" Name="TotalGLSPackagesSent"/>
+                            <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding ElementName=packageDatagrid, Path=Items.Count}" Name="TotalGLSPackagesSent"/>
                             <TextBlock Grid.Column="2" Text="M/Omdeling PostDanmark" />
-                            <TextBlock Grid.Column="2" Grid.Row="1" Text="0" Name="TotalMOPackagesSent"/>
+                            <TextBlock Grid.Column="2" Grid.Row="1" Text="{Binding ElementName=packageDatagrid, Path=Items.Count}" Name="TotalMOPackagesSent"/>
                             <TextBlock Grid.Column="3" Text="U/Omdeling PostDanmark" />
-                            <TextBlock Grid.Column="3" Grid.Row="1" Text="0" Name="TotalUOPackagesSent"/>
+                            <TextBlock Grid.Column="3" Grid.Row="1" Text="{Binding ElementName=packageDatagrid, Path=Items.Count}" Name="TotalUOPackagesSent"/>
                         </Grid>
                     </Border>
                     
