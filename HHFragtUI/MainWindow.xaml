@@ -122,6 +122,7 @@
                                     <ColumnDefinition Width="2*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Land: " Margin="5, 0, 0, 0"/>
+
                                 <TextBlock Grid.Column="1" Name="UdkastCountry" Text="{Binding Source={StaticResource ResourceKey=myDataSource}, Path=Country}" />
                             </Grid>
                             <Grid>
@@ -130,6 +131,7 @@
                                     <ColumnDefinition Width="2*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Pris: " Margin="5, 0, 0, 0"/>
+
                                 <TextBlock Grid.Column="1" Name="UdkastPrice" Text="{Binding Source={StaticResource ResourceKey=myDataSource}, Path=Price}" />
                             </Grid>
                             <TextBlock Text="Kommentar: " Margin="5, 10, 0, 0"/>

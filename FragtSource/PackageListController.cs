@@ -15,7 +15,7 @@ namespace FragtSource
         {
             packageList = new List<Package>();
 
-            CreateExamplePackages(50);
+            GenerateExamplePackages(50);
         }
 
         public List<Package> ReturnPackageList()
@@ -23,11 +23,38 @@ namespace FragtSource
             return packageList;
         }
 
-        private void CreateExamplePackages(int amount)
+        public void AddPackageToList(Package package)
+        {
+            Package largestId = new Package();
+            if (packageList.Count > 0)
+            {
+                largestId = packageList.OrderByDescending(item => item.Id).First();
+            }
+            package.Id = largestId.Id + 1;
+            packageList.Add(package);
+        }
+
+        public void DeletePackageById(int Id)
+        {
+            foreach (var package in packageList)
+            {
+                if (package.Id == Id)
+                {
+                    packageList.Remove(package);
+                }
+            }
+        }
+
+        public void DeletePackage(Package package)
+        {
+            DeletePackageById(package.Id);
+        }
+
+        private void GenerateExamplePackages(int amount)
         {
             for (int i = 0; i < amount; i++)
             {
-                packageList.Add(GenerateRandomPackage());
+                AddPackageToList(GenerateRandomPackage());
             }
         }
 
