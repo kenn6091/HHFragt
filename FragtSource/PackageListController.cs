@@ -41,6 +41,7 @@ namespace FragtSource
                 if (package.Id == Id)
                 {
                     packageList.Remove(package);
+                    break;
                 }
             }
         }
