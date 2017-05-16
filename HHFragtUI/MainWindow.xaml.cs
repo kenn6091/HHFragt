@@ -59,10 +59,15 @@ namespace HHFragtUI {
         }
 
         private void Btn_search(object sender, RoutedEventArgs e) {
-            packageList = packageList.FindAll(
+            packageList = FetchPackageListFromController().FindAll(
                 delegate(Package pc) {
-                    return pc.Date < new DateTime(Convert.ToInt32(startDate.Text));
-                }); 
+                    return pc.Date > Convert.ToDateTime(startDate.Text);
+                });
+            packageList = packageList.FindAll(
+                delegate (Package pc) {
+                    return pc.Date < Convert.ToDateTime(endDate.Text);
+                });
+            packageDatagrid.ItemsSource = packageList;
             packageDatagrid.Items.Refresh();
         }
     }

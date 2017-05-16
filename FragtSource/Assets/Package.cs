@@ -11,7 +11,6 @@ namespace FragtSource
         private DateTime _date;
 
         public int Id { get; set; }
-        //public string Date { get; set; }
         public DateTime Date {
             get { return _date; }
             set {

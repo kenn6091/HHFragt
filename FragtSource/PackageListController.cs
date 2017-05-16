@@ -62,7 +62,7 @@ namespace FragtSource
         {
             Package randompackage = new Package();
             //randompackage.Date = rnd.Next(10, 99) + "/" + rnd.Next(10, 99) + "/" + rnd.Next(1000, 9999);
-            randompackage.Date = new DateTime(rnd.Next(1000, 9999), rnd.Next(1, 12), rnd.Next(1, 31),0,0,0);
+            randompackage.Date = new DateTime(rnd.Next(1000, 9999), rnd.Next(1, 12), rnd.Next(1, 29),0,0,0);
             randompackage.Type = GenerateRandomType(rnd.Next(1, 3));
             randompackage.Country = GenerateRandomCountry(rnd.Next(1, 3));
             randompackage.Price = rnd.Next(1, 99).ToString();
