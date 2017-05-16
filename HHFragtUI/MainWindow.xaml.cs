@@ -57,5 +57,11 @@ namespace HHFragtUI {
         {
             return PLC.ReturnPackageList();
         }
+
+        private void Btn_search(object sender, RoutedEventArgs e) {
+            //startDate.Text;
+            //endDate.Text;
+            //update grid with new search
+        }
     }
 }

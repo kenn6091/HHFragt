@@ -162,12 +162,12 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock Grid.Column="0" Grid.Row="0" Text="StartDato"/>
-                    <TextBox Grid.Column="0" Grid.Row="1" Padding="2" Margin="0, 0, 20, 0"/>
+                    <TextBox Name="startDate" Grid.Column="0" Grid.Row="1" Padding="2" Margin="0, 0, 20, 0"/>
 
                     <TextBlock Grid.Column="1" Grid.Row="0" Text="SlutDato"/>
-                    <TextBox Grid.Column="1" Grid.Row="1" Padding="2" Margin="0, 0, 20, 0"/>
+                    <TextBox Name="endDate" Grid.Column="1" Grid.Row="1" Padding="2" Margin="0, 0, 20, 0"/>
 
-                    <Button Grid.Column="2" Grid.Row="1" Content="Søg"/>
+                    <Button Grid.Column="2" Grid.Row="1" Content="Søg" Click="Btn_search"/>
                 </Grid>
 
                 <!-- Display packages in datagrid -->
@@ -194,6 +194,16 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
 
+                            <Border Grid.Column="0" BorderBrush="#A5A5A5" BorderThickness="2,2,2,2"/>
+                            <Border Grid.Column="1" BorderBrush="#A5A5A5" BorderThickness="0,2,2,2"/>
+                            <Border Grid.Column="2" BorderBrush="#A5A5A5" BorderThickness="0,2,2,2"/>
+                            <Border Grid.Column="3" BorderBrush="#A5A5A5" BorderThickness="0,2,2,2"/>
+
+                            <Border Grid.Column="0" Grid.Row="1" BorderBrush="#A5A5A5" BorderThickness="2,0,2,2"/>
+                            <Border Grid.Column="1" Grid.Row="1" BorderBrush="#A5A5A5" BorderThickness="0,0,2,2"/>
+                            <Border Grid.Column="2" Grid.Row="1" BorderBrush="#A5A5A5" BorderThickness="0,0,2,2"/>
+                            <Border Grid.Column="3" Grid.Row="1" BorderBrush="#A5A5A5" BorderThickness="0,0,2,2"/>
+
                             <TextBlock Grid.Column="0" Text="Total" />
                             <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding ElementName=packageDatagrid, Path=Items.Count}" Name="TotalPackagesSent"/>
                             <TextBlock Grid.Column="1" Text="GLS" />
@@ -204,11 +214,10 @@
                             <TextBlock Grid.Column="3" Grid.Row="1" Text="{Binding ElementName=packageDatagrid, Path=Items.Count}" Name="TotalUOPackagesSent"/>
                         </Grid>
                     </Border>
-                    
+
                     <!-- Delete button -->
                     <Button Grid.Column="2" Content="Delete" Margin="10, 20, 0, 0" Click="Btn_delete"/>
                 </Grid>
-
             </StackPanel>
         </Border>
     </Grid>
