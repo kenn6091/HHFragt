@@ -23,31 +23,27 @@ namespace HHFragtUI {
     public partial class MainWindow:Window {
         public List<Package> packageList = new List<Package>();
         public PackageListController PLC = new PackageListController();
-        public int GLS, MOmdeling, UOmdeling;
+        Totals totalsData = new Totals();
+
+        public int GLSCalculated, MOmdelingCalculated, UOmdelingCalculated;
 
 
         public MainWindow()
         {
             packageList = FetchPackageListFromController();
 
-
+            
 
             InitializeComponent();
 
             packageDatagrid.ItemsSource = packageList;
 
-            foreach (var package in packageList) {
-                if (package.Type == "GLS") {
-                    GLS++;
-                } else if (package.Type == "U/Omdeling PostDanmark") {
-                    UOmdeling++;
-                } else if (package.Type == "M/Omdeling PostDanmark") {
-                    MOmdeling++;
-                }
-            }
-            TotalGLSPackagesSent.Text = GLS.ToString();
-            TotalMOPackagesSent.Text = MOmdeling.ToString();
-            TotalUOPackagesSent.Text = UOmdeling.ToString();
+            this.DataContext = totalsData;
+            CalculateTotals();
+
+            //TotalGLSPackagesSent.Text = GLS.ToString();
+            //TotalMOPackagesSent.Text = MOmdeling.ToString();
+            //TotalUOPackagesSent.Text = UOmdeling.ToString();
         }
 
         private void Btn_gem(object sender, RoutedEventArgs e)
@@ -60,6 +56,7 @@ namespace HHFragtUI {
             tempPackage.Comment = UdkastComment.Text;
             
             PLC.AddPackageToList(tempPackage);
+            CalculateTotals();
             packageDatagrid.Items.Refresh();
         }
 
@@ -67,6 +64,7 @@ namespace HHFragtUI {
         {
             Package selectedPackage = (Package)packageDatagrid.SelectedItems[0];
             PLC.DeletePackageById(selectedPackage.Id);
+            CalculateTotals();
             packageDatagrid.Items.Refresh();
         }
 
@@ -88,6 +86,102 @@ namespace HHFragtUI {
             );
             packageDatagrid.ItemsSource = packageList;
             packageDatagrid.Items.Refresh();
+        }
+
+        private void CalculateTotals()
+        {
+            GLSCalculated = 0;
+            UOmdelingCalculated = 0;
+            MOmdelingCalculated = 0;
+
+            foreach (var package in packageList)
+            {
+                if (package.Type == "GLS")
+                {
+                    GLSCalculated++;
+                }
+                else if (package.Type == "U/Omdeling PostDanmark")
+                {
+                    UOmdelingCalculated++;
+                }
+                else if (package.Type == "M/Omdeling PostDanmark")
+                {
+                    MOmdelingCalculated++;
+                }
+            }
+
+            totalsData.GLS = GLSCalculated;
+            totalsData.UOmdeling = UOmdelingCalculated;
+            totalsData.MOmdeling = MOmdelingCalculated;
+        }
+    }
+
+    public class Totals : DependencyObject
+    {
+        public static DependencyProperty
+            GLSTotalsChangedProperty = DependencyProperty.
+                Register("GLS", typeof(int), typeof(Totals),
+                    new PropertyMetadata(0, GLSTotalsChanged));
+
+        private static void GLSTotalsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            Console.WriteLine("ok");
+        }
+
+        public int GLS
+        {
+            get
+            {
+                return (int)GetValue(Totals.GLSTotalsChangedProperty);
+            }
+            set
+            {
+                SetValue(Totals.GLSTotalsChangedProperty, value);
+            }
+        }
+
+        public static DependencyProperty
+            UOmdelingChangedProperty = DependencyProperty
+            .Register("UOmdeling", typeof(int), typeof(Totals),
+            new PropertyMetadata(0, UOmdelingChanged));
+
+        private static void UOmdelingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            Console.WriteLine("ok");
+        }
+
+        public int UOmdeling
+        {
+            get
+            {
+                return (int)GetValue(Totals.UOmdelingChangedProperty);
+            }
+            set
+            {
+                SetValue(Totals.UOmdelingChangedProperty, value);
+            }
+        }
+
+        public static DependencyProperty
+            MOmdelingChangedProperty = DependencyProperty
+            .Register("MOmdeling", typeof(int), typeof(Totals),
+                new PropertyMetadata(0, MOmdelingChanged));
+
+        private static void MOmdelingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            Console.WriteLine("ok");
+        }
+
+        public int MOmdeling
+        {
+            get
+            {
+                return (int)GetValue(Totals.MOmdelingChangedProperty);
+            }
+            set
+            {
+                SetValue(Totals.MOmdelingChangedProperty, value);
+            }
         }
     }
 }
