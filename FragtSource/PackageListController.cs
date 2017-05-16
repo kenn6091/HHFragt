@@ -64,7 +64,7 @@ namespace FragtSource
             Package randompackage = new Package();
             randompackage.Date = new DateTime(rnd.Next(1000, 9999), rnd.Next(1, 12), rnd.Next(1, 29),0,0,0);
             randompackage.Type = GenerateRandomType(rnd.Next(1, 4));
-            randompackage.Country = GenerateRandomCountry(rnd.Next(1, 3));
+            randompackage.Country = GenerateRandomCountry(rnd.Next(1, 5));
             randompackage.Price = rnd.Next(1, 99).ToString();
             randompackage.Comment = "No comment";
 
@@ -86,7 +86,7 @@ namespace FragtSource
                     country = "DE";
                     break;
                 default:
-                    country = "DK";
+                    country = "";
                     break;
             }
             return country;

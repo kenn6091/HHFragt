@@ -32,18 +32,12 @@ namespace HHFragtUI {
         {
             packageList = FetchPackageListFromController();
 
-            
-
             InitializeComponent();
 
             packageDatagrid.ItemsSource = packageList;
 
             this.DataContext = totalsData;
             CalculateTotals();
-
-            //TotalGLSPackagesSent.Text = GLS.ToString();
-            //TotalMOPackagesSent.Text = MOmdeling.ToString();
-            //TotalUOPackagesSent.Text = UOmdeling.ToString();
         }
 
         private void Btn_gem(object sender, RoutedEventArgs e)
@@ -85,6 +79,7 @@ namespace HHFragtUI {
                 }
             );
             packageDatagrid.ItemsSource = packageList;
+            CalculateTotals();
             packageDatagrid.Items.Refresh();
         }
 
