@@ -36,7 +36,7 @@ namespace HHFragtUI {
         private void Btn_gem(object sender, RoutedEventArgs e)
         {
             Package tempPackage = new Package();
-            tempPackage.Date = Convert.ToDateTime(UdkastDate.Text);
+            tempPackage.Date = Convert.ToDateTime(DatoInput.Text);
             tempPackage.Type = UdkastType.Text;
             tempPackage.Country = UdkastCountry.Text;
             tempPackage.Price = UdkastPrice.Text;
