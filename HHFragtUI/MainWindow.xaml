@@ -171,7 +171,21 @@
                 </Grid>
 
                 <!-- Display packages in datagrid -->
-                <DataGrid Name="packageDatagrid" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" AutoGenerateColumns="True" Height="400" IsReadOnly="True" Margin="0, 5, 0, 0" SelectionUnit="FullRow"/>
+                <DataGrid Name="packageDatagrid" 
+                          VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
+                          AutoGenerateColumns="False" 
+                          Height="400" 
+                          IsReadOnly="True"
+                          Margin="0, 5, 0, 0" 
+                          SelectionUnit="FullRow">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Dato" Width="1.5*" Binding="{Binding Date, StringFormat='dd/MM/yyyy'}" />
+                        <DataGridTextColumn Header="Type" Width="3*" Binding="{Binding Type}" />
+                        <DataGridTextColumn Header="Pris" Width="*" Binding="{Binding Price}" />
+                        <DataGridTextColumn Header="Land" Width="*" Binding="{Binding Contry}" />
+                        <DataGridTextColumn Header="Kommentar" Width="4*" Binding="{Binding Comment}" />
+                    </DataGrid.Columns>
+                </DataGrid>
 
                 <!-- Totals and Delete button -->
                 <Grid>
