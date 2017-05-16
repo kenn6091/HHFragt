@@ -36,7 +36,7 @@ namespace HHFragtUI {
         private void Btn_gem(object sender, RoutedEventArgs e)
         {
             Package tempPackage = new Package();
-            tempPackage.Date = UdkastDate.Text;
+            tempPackage.Date = new DateTime(Convert.ToInt32(UdkastDate.Text));
             tempPackage.Type = UdkastType.Text;
             tempPackage.Country = UdkastCountry.Text;
             tempPackage.Price = UdkastPrice.Text;
@@ -56,6 +56,14 @@ namespace HHFragtUI {
         private List<Package> FetchPackageListFromController()
         {
             return PLC.ReturnPackageList();
+        }
+
+        private void Btn_search(object sender, RoutedEventArgs e) {
+            packageList = packageList.FindAll(
+                delegate(Package pc) {
+                    return pc.Date < new DateTime(Convert.ToInt32(startDate.Text));
+                }); 
+            packageDatagrid.Items.Refresh();
         }
     }
 }

@@ -9,7 +9,8 @@ namespace FragtSource
     public class Package
     {
         public int Id { get; set; }
-        public string Date { get; set; }
+        //public string Date { get; set; }
+        public DateTime Date { get; set; }
         public string Type { get; set; }
         public string Country { get; set; }
         public string Price { get; set; }
