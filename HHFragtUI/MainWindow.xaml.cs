@@ -23,14 +23,31 @@ namespace HHFragtUI {
     public partial class MainWindow:Window {
         public List<Package> packageList = new List<Package>();
         public PackageListController PLC = new PackageListController();
+        public int GLS, MOmdeling, UOmdeling;
+
 
         public MainWindow()
         {
             packageList = FetchPackageListFromController();
 
+
+
             InitializeComponent();
 
             packageDatagrid.ItemsSource = packageList;
+
+            foreach (var package in packageList) {
+                if (package.Type == "GLS") {
+                    GLS++;
+                } else if (package.Type == "U/Omdeling PostDanmark") {
+                    UOmdeling++;
+                } else if (package.Type == "M/Omdeling PostDanmark") {
+                    MOmdeling++;
+                }
+            }
+            TotalGLSPackagesSent.Text = GLS.ToString();
+            TotalMOPackagesSent.Text = MOmdeling.ToString();
+            TotalUOPackagesSent.Text = UOmdeling.ToString();
         }
 
         private void Btn_gem(object sender, RoutedEventArgs e)
@@ -62,11 +79,13 @@ namespace HHFragtUI {
             packageList = FetchPackageListFromController().FindAll(
                 delegate(Package pc) {
                     return pc.Date > Convert.ToDateTime(startDate.Text);
-                });
+                }
+            );
             packageList = packageList.FindAll(
                 delegate (Package pc) {
                     return pc.Date < Convert.ToDateTime(endDate.Text);
-                });
+                }
+            );
             packageDatagrid.ItemsSource = packageList;
             packageDatagrid.Items.Refresh();
         }
