@@ -12,7 +12,7 @@ namespace FragtSource {
             string path = @Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\Print.csv";
             TryToDelete(path);
 
-            string appendText1 = "Dato;Type;Pris;Land;Kommentar" + Environment.NewLine;
+            string appendText1 = "sep=;" + Environment.NewLine + "Dato;Type;Pris;Land;Kommentar" + Environment.NewLine;
             File.AppendAllText(path, appendText1, Encoding.UTF8);
 
             foreach (Package package in packages) {
