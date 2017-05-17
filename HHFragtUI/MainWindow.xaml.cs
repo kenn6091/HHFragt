@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FragtSource;
+using HHFragtUI.Assets;
 using System.Data;
 
 namespace HHFragtUI {
@@ -23,7 +24,7 @@ namespace HHFragtUI {
     public partial class MainWindow:Window {
         public List<Package> packageList = new List<Package>();
         public PackageListController PLC = new PackageListController();
-        Totals totalsData = new Totals();
+        FragtUIDependencies totalsData = new FragtUIDependencies();
 
         public int GLSCalculated, MOmdelingCalculated, UOmdelingCalculated;
 
@@ -42,24 +43,38 @@ namespace HHFragtUI {
 
         private void Btn_gem(object sender, RoutedEventArgs e)
         {
-            Package tempPackage = new Package();
-            tempPackage.Date = Convert.ToDateTime(DatoInput.Text);
-            tempPackage.Type = UdkastType.Text;
-            tempPackage.Country = UdkastCountry.Text;
-            tempPackage.Price = UdkastPrice.Text;
-            tempPackage.Comment = UdkastComment.Text;
-            
-            PLC.AddPackageToList(tempPackage);
-            CalculateTotals();
-            packageDatagrid.Items.Refresh();
+            try
+            {
+                Package tempPackage = new Package();
+                tempPackage.Date = Convert.ToDateTime(DatoInput.Text);
+                tempPackage.Type = UdkastType.Text;
+                tempPackage.Country = UdkastCountry.Text;
+                tempPackage.Price = UdkastPrice.Text;
+                tempPackage.Comment = UdkastComment.Text;
+
+                PLC.AddPackageToList(tempPackage);
+                CalculateTotals();
+                packageDatagrid.Items.Refresh();
+            }
+            catch(Exception exception)
+            {
+                MessageBoxResult result = MessageBox.Show("Der opstod et problem med at gemme filen. \n\n" + exception, "Error!");
+            }
         }
 
         private void Btn_delete(object sender, RoutedEventArgs e)
         {
-            Package selectedPackage = (Package)packageDatagrid.SelectedItems[0];
-            PLC.DeletePackageById(selectedPackage.Id);
-            CalculateTotals();
-            packageDatagrid.Items.Refresh();
+            try
+            {
+                Package selectedPackage = (Package)packageDatagrid.SelectedItems[0];
+                PLC.DeletePackageById(selectedPackage.Id);
+                CalculateTotals();
+                packageDatagrid.Items.Refresh();
+            }
+            catch(Exception exception)
+            {
+                MessageBoxResult result = MessageBox.Show("Der opstod et problem med at slette pakken. \n\n" + exception, "Error!");
+            }
         }
 
         private List<Package> FetchPackageListFromController()
@@ -67,25 +82,43 @@ namespace HHFragtUI {
             return PLC.ReturnPackageList();
         }
 
-        private void Btn_print(object sender, RoutedEventArgs e) {
-            Print print = new Print();
-            print.Printall(packageList);
+        private void Btn_print(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Print print = new Print();
+                print.Printall(packageList);
+            }
+            catch(Exception exception)
+            {
+                MessageBoxResult result = MessageBox.Show("Der opstod et problem ved oprettelse af filen. \n\n" + exception, "Error!");
+            }
         }
 
-        private void Btn_search(object sender, RoutedEventArgs e) {
-            packageList = FetchPackageListFromController().FindAll(
-                delegate(Package pc) {
-                    return pc.Date > Convert.ToDateTime(startDate.Text);
-                }
-            );
-            packageList = packageList.FindAll(
-                delegate (Package pc) {
-                    return pc.Date < Convert.ToDateTime(endDate.Text);
-                }
-            );
-            packageDatagrid.ItemsSource = packageList;
-            CalculateTotals();
-            packageDatagrid.Items.Refresh();
+        private void Btn_search(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                packageList = FetchPackageListFromController().FindAll(
+                    delegate (Package pc)
+                    {
+                        return pc.Date > Convert.ToDateTime(startDate.Text);
+                    }
+                );
+                packageList = packageList.FindAll(
+                    delegate (Package pc)
+                    {
+                        return pc.Date < Convert.ToDateTime(endDate.Text);
+                    }
+                );
+                packageDatagrid.ItemsSource = packageList;
+                CalculateTotals();
+                packageDatagrid.Items.Refresh();
+            }
+            catch(Exception exception)
+            {
+                MessageBoxResult result = MessageBox.Show("Kunne ikke søge inden for de givene datoer. \n\n" + exception, "Error!");
+            }
         }
 
         private void CalculateTotals()
@@ -113,75 +146,6 @@ namespace HHFragtUI {
             totalsData.GLS = GLSCalculated;
             totalsData.UOmdeling = UOmdelingCalculated;
             totalsData.MOmdeling = MOmdelingCalculated;
-        }
-    }
-
-    public class Totals : DependencyObject
-    {
-        public static DependencyProperty
-            GLSTotalsChangedProperty = DependencyProperty.
-                Register("GLS", typeof(int), typeof(Totals),
-                    new PropertyMetadata(0, GLSTotalsChanged));
-
-        private static void GLSTotalsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            Console.WriteLine("ok");
-        }
-
-        public int GLS
-        {
-            get
-            {
-                return (int)GetValue(Totals.GLSTotalsChangedProperty);
-            }
-            set
-            {
-                SetValue(Totals.GLSTotalsChangedProperty, value);
-            }
-        }
-
-        public static DependencyProperty
-            UOmdelingChangedProperty = DependencyProperty
-            .Register("UOmdeling", typeof(int), typeof(Totals),
-            new PropertyMetadata(0, UOmdelingChanged));
-
-        private static void UOmdelingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            Console.WriteLine("ok");
-        }
-
-        public int UOmdeling
-        {
-            get
-            {
-                return (int)GetValue(Totals.UOmdelingChangedProperty);
-            }
-            set
-            {
-                SetValue(Totals.UOmdelingChangedProperty, value);
-            }
-        }
-
-        public static DependencyProperty
-            MOmdelingChangedProperty = DependencyProperty
-            .Register("MOmdeling", typeof(int), typeof(Totals),
-                new PropertyMetadata(0, MOmdelingChanged));
-
-        private static void MOmdelingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            Console.WriteLine("ok");
-        }
-
-        public int MOmdeling
-        {
-            get
-            {
-                return (int)GetValue(Totals.MOmdelingChangedProperty);
-            }
-            set
-            {
-                SetValue(Totals.MOmdelingChangedProperty, value);
-            }
         }
     }
 }
