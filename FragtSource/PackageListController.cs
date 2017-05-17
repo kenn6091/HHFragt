@@ -9,7 +9,7 @@ namespace FragtSource
     public class PackageListController
     {
         public Random rnd = new Random();
-        public List<Package> packageList;
+        private List<Package> packageList;
 
         public PackageListController()
         {
@@ -51,7 +51,7 @@ namespace FragtSource
             DeletePackageById(package.Id);
         }
 
-        private void GenerateExamplePackages(int amount)
+        public void GenerateExamplePackages(int amount)
         {
             for (int i = 0; i < amount; i++)
             {

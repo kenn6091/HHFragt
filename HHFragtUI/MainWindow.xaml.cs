@@ -88,6 +88,7 @@ namespace HHFragtUI {
             {
                 Print print = new Print();
                 print.Printall(packageList);
+                MessageBoxResult result = MessageBox.Show("Listen af pakker blev gemt i filen Print.csv på dit skrivebord.", "Print");
             }
             catch(Exception exception)
             {

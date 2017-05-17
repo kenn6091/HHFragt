@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HHFragtUI", "HHFragtUI\HHFr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FragtSource", "FragtSource\FragtSource.csproj", "{29E42568-CB8D-4758-B1AA-319F33B2A21B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{430FA974-9747-4944-82A7-49C3EB9BED14}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{29E42568-CB8D-4758-B1AA-319F33B2A21B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29E42568-CB8D-4758-B1AA-319F33B2A21B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29E42568-CB8D-4758-B1AA-319F33B2A21B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{430FA974-9747-4944-82A7-49C3EB9BED14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{430FA974-9747-4944-82A7-49C3EB9BED14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{430FA974-9747-4944-82A7-49C3EB9BED14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{430FA974-9747-4944-82A7-49C3EB9BED14}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
