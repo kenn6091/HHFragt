@@ -67,6 +67,11 @@ namespace HHFragtUI {
             return PLC.ReturnPackageList();
         }
 
+        private void Btn_print(object sender, RoutedEventArgs e) {
+            Print print = new Print();
+            print.Printall(packageList);
+        }
+
         private void Btn_search(object sender, RoutedEventArgs e) {
             packageList = FetchPackageListFromController().FindAll(
                 delegate(Package pc) {

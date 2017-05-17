@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Assets\Package.cs" />
     <Compile Include="PackageListController.cs" />
+    <Compile Include="Print.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
