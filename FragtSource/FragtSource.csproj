@@ -51,7 +51,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Package.cs" />
-    <Compile Include="DBcon.cs" />
     <Compile Include="PackageListController.cs" />
     <Compile Include="Print.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

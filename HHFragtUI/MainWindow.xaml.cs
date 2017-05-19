@@ -55,6 +55,8 @@ namespace HHFragtUI {
             {
                 Package selectedPackage = (Package)packageDatagrid.SelectedItems[0];
                 PLC.DeletePackageById(selectedPackage.Id);
+                LoadSearch();
+                packageDatagrid.ItemsSource = packageList;
                 CalculateTotals();
                 packageDatagrid.Items.Refresh();
             }
@@ -83,27 +85,11 @@ namespace HHFragtUI {
             }
         }
 
-        private void Btn_Database(object sender, RoutedEventArgs e) {
-            DBcon dbcon = new DBcon();
-            dbcon.DatabaseUpdate(FetchPackageListFromController());
-        }
-
         private void Btn_search(object sender, RoutedEventArgs e)
         {
             try
             {
-                packageList = FetchPackageListFromController().FindAll(
-                    delegate (Package pc)
-                    {
-                        return pc.Date > Convert.ToDateTime(startDate.Text);
-                    }
-                );
-                packageList = packageList.FindAll(
-                    delegate (Package pc)
-                    {
-                        return pc.Date < Convert.ToDateTime(endDate.Text);
-                    }
-                );
+                LoadSearch();
                 packageDatagrid.ItemsSource = packageList;
                 CalculateTotals();
                 packageDatagrid.Items.Refresh();
@@ -111,6 +97,26 @@ namespace HHFragtUI {
             catch(Exception exception)
             {
                 MessageBoxResult result = MessageBox.Show("Kunne ikke søge inden for de givene dato'er. \n\n" + exception, "Error!");
+            }
+        }
+
+        private void LoadSearch()
+        {
+            packageList = FetchPackageListFromController();
+            if (startDate.Text != "" && endDate.Text != "")
+            {
+                packageList = packageList.FindAll(
+                delegate (Package pc)
+                    {
+                        return pc.Date > Convert.ToDateTime(startDate.Text).AddDays(-1);
+                    });
+
+                packageList = packageList.FindAll(
+                    delegate (Package pc)
+                    {
+                        return pc.Date < Convert.ToDateTime(endDate.Text).AddDays(+1);
+                    }
+                );
             }
         }
 
