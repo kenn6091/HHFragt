@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
-namespace HHFragtUI.Assets
-{
+namespace HHFragtUI.Assets {
     public class FragtUIDependencies : DependencyObject
     {
         public static DependencyProperty

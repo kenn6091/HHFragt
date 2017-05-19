@@ -138,6 +138,7 @@
                     <!-- Gem Button -->
                     <Button Grid.Column="1" Content="Gem" Margin="5, 190, 0, 0" Click="Btn_gem"/>
                     <Button Grid.Column="1" Content="Save to file" Margin="5,170,0,20" Click="Btn_print"/>
+                    <Button Grid.Column="1" Content="Database" Margin="5,150,0,40" Click="Btn_Database"/>
                 </Grid>
             </StackPanel>
         </Border>

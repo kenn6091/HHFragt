@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace FragtSource
-{
+namespace FragtSource {
     public class PackageListController
     {
         public Random rnd = new Random();
