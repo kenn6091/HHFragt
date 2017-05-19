@@ -69,5 +69,27 @@ namespace HHFragtUI.Assets {
                 SetValue(FragtUIDependencies.MOmdelingChangedProperty, value);
             }
         }
+
+        public static DependencyProperty
+            BrevChangedProperty = DependencyProperty
+            .Register("Brev", typeof(int), typeof(FragtUIDependencies),
+                new PropertyMetadata(0, BrevChanged));
+
+        private static void BrevChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
+
+        public int Brev
+        {
+            get
+            {
+                return (int)GetValue(FragtUIDependencies.BrevChangedProperty);
+            }
+            set
+            {
+                SetValue(FragtUIDependencies.BrevChangedProperty, value);
+            }
+        }
     }
 }
