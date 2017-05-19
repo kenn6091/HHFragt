@@ -13,6 +13,10 @@ namespace FragtSource {
         {
             packageList = new List<Package>();
 
+            sqlcon.LogIn();
+            packageList = sqlcon.updatelist();
+            sqlcon.LogOut();
+
             //GenerateExamplePackages(50);
         }
 
@@ -112,6 +116,9 @@ namespace FragtSource {
 
                 case 3:
                     type = "M/Omdeling PostDanmark";
+                    break;
+                case 4:
+                    type = "Brev";
                     break;
                 default:
                     type = "Failed to generate random type";

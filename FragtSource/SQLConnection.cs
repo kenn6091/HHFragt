@@ -58,7 +58,7 @@ namespace FragtSource
                 if (package.Price != "")
                     price = Convert.ToInt32(package.Price);
                 MySql.Data.MySqlClient.MySqlCommand command = conn.CreateCommand();
-                command.CommandText = "INSERT INTO Fragt (`id`, `date`, `type`, `price`, `country`, `comment`) VALUES (" + Convert.ToInt32(package.Id) + ", '" + package.Date.ToString("dd/MM/yyyy") + "', '" + package.Type + "', " + price + ", '" + package.Country + "', '" + package.Comment + "')";
+                command.CommandText = "INSERT INTO Fragt (`id`, `date`, `type`, `price`, `country`, `comment`) VALUES (" + package.Id + ", '" + package.Date.ToString("dd/MM/yyyy") + "', '" + package.Type + "', " + price + ", '" + package.Country + "', '" + package.Comment + "')";
                 command.ExecuteNonQuery();
             }
             catch (MySql.Data.MySqlClient.MySqlException errormessage)
@@ -78,6 +78,39 @@ namespace FragtSource
             catch (MySql.Data.MySqlClient.MySqlException errormessage)
             {
                 Console.WriteLine("Exception: " + errormessage.Message);
+            }
+        }
+
+        public List<Package> updatelist()
+        {
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand("SELECT * FROM Fragt", conn))
+            {
+                try
+                {
+                    List<Package> tempList = new List<Package>();
+                    using (MySql.Data.MySqlClient.MySqlDataReader Reader = cmd.ExecuteReader())
+                    {
+                            if (Reader.HasRows)
+                        {
+                            while (Reader.Read())
+                            {
+                                Package tempPackage = new Package();
+                                tempPackage.Id = Convert.ToInt32(Reader["Id"]);
+                                tempPackage.Date = Convert.ToDateTime(Reader["Date"]);
+                                tempPackage.Type = Reader["Type"].ToString();
+                                tempPackage.Country = Reader["Country"].ToString();
+                                tempPackage.Price = Reader["Price"].ToString();
+                                tempPackage.Comment = Reader["Comment"].ToString();
+                                tempList.Add(tempPackage);
+                            }
+                        }
+                    }
+                    return tempList;
+                }
+                catch
+                {
+                    return null;
+                }
             }
         }
     }

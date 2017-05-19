@@ -13,7 +13,7 @@ namespace HHFragtUI {
         public PackageListController PLC = new PackageListController();
         FragtUIDependencies totalsData = new FragtUIDependencies();
 
-        public int GLSCalculated, MOmdelingCalculated, UOmdelingCalculated;
+        public int GLSCalculated, MOmdelingCalculated, UOmdelingCalculated, BrevCalculated;
 
 
         public MainWindow()
@@ -125,6 +125,7 @@ namespace HHFragtUI {
             GLSCalculated = 0;
             UOmdelingCalculated = 0;
             MOmdelingCalculated = 0;
+            BrevCalculated = 0;
 
             foreach (var package in packageList)
             {
@@ -140,11 +141,16 @@ namespace HHFragtUI {
                 {
                     MOmdelingCalculated++;
                 }
+                else if (package.Type == "Brev")
+                {
+                    BrevCalculated++;
+                }
             }
 
             totalsData.GLS = GLSCalculated;
             totalsData.UOmdeling = UOmdelingCalculated;
             totalsData.MOmdeling = MOmdelingCalculated;
+            totalsData.Brev = BrevCalculated;
         }
     }
 }
