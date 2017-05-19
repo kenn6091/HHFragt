@@ -40,6 +40,8 @@ namespace HHFragtUI {
                 tempPackage.Comment = UdkastComment.Text;
 
                 PLC.AddPackageToList(tempPackage);
+                LoadSearch();
+                packageDatagrid.ItemsSource = packageList;
                 CalculateTotals();
                 packageDatagrid.Items.Refresh();
             }
