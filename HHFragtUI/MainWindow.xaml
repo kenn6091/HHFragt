@@ -35,6 +35,7 @@
 
         <!-- TOP RIGHT -->
         <Label Grid.Row="0" Grid.Column="1" Content="Søg Fragt" FontWeight="Bold"/>
+        <Button Grid.Column="1" Content="Gem til fil" Background="White" Width="100" Height="20" Margin="530,0,0,0" Click="Btn_print"/>
 
         <!-- BOTTOM LEFT-->
         <Border Grid.Column="0" Grid.Row="1" Margin="20, 10, 20, 0">
@@ -138,7 +139,6 @@
 
                     <!-- Gem Button -->
                     <Button Grid.Column="1" Content="Gem" Margin="5, 190, 0, 0" Click="Btn_gem"/>
-                    <Button Grid.Column="1" Content="Save to file" Margin="5,170,0,20" Click="Btn_print"/>
                 </Grid>
             </StackPanel>
         </Border>
@@ -233,7 +233,7 @@
                     </Border>
 
                     <!-- Delete button -->
-                    <Button Grid.Column="2" Content="Delete" Margin="10, 20, 0, 0" Click="Btn_delete"/>
+                    <Button Grid.Column="2" Content="Slet" Margin="10, 20, 0, 0" Click="Btn_delete"/>
                 </Grid>
             </StackPanel>
         </Border>
