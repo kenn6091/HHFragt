@@ -7,12 +7,13 @@ namespace FragtSource {
     {
         public Random rnd = new Random();
         private List<Package> packageList;
+        SQLConnection sqlcon = new SQLConnection();
 
         public PackageListController()
         {
             packageList = new List<Package>();
 
-            GenerateExamplePackages(50);
+            //GenerateExamplePackages(50);
         }
 
         public List<Package> ReturnPackageList()
@@ -29,6 +30,10 @@ namespace FragtSource {
             }
             package.Id = largestId.Id + 1;
             packageList.Add(package);
+
+            sqlcon.LogIn();
+            sqlcon.InsertIntoFragt(package);
+            sqlcon.LogOut();
         }
 
         public void DeletePackageById(int Id)
@@ -41,6 +46,10 @@ namespace FragtSource {
                     break;
                 }
             }
+
+            sqlcon.LogIn();
+            sqlcon.DeletePackageByID(Id);
+            sqlcon.LogOut();
         }
 
         public void DeletePackage(Package package)
@@ -59,11 +68,10 @@ namespace FragtSource {
         public Package GenerateRandomPackage()
         {
             Package randompackage = new Package();
-            randompackage.Date = new DateTime(rnd.Next(1000, 9999), rnd.Next(1, 12), rnd.Next(1, 29),0,0,0);
+            randompackage.Date = new DateTime(rnd.Next(2000, 2017), rnd.Next(1, 12), rnd.Next(1, 29),0,0,0);
             randompackage.Type = GenerateRandomType(rnd.Next(1, 4));
             randompackage.Country = GenerateRandomCountry(rnd.Next(1, 5));
             randompackage.Price = rnd.Next(1, 99).ToString();
-            randompackage.Comment = "No comment";
 
             return randompackage;
         }

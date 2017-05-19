@@ -50,15 +50,32 @@ namespace FragtSource
             }
         }
 
-        public void InsertIntoFragt()
+        public void InsertIntoFragt(Package package)
+        {
+            try
+            {
+                int price = 0;
+                if (package.Price != "")
+                    price = Convert.ToInt32(package.Price);
+                MySql.Data.MySqlClient.MySqlCommand command = conn.CreateCommand();
+                command.CommandText = "INSERT INTO Fragt (`id`, `date`, `type`, `price`, `country`, `comment`) VALUES (" + Convert.ToInt32(package.Id) + ", '" + package.Date.ToString("dd/MM/yyyy") + "', '" + package.Type + "', " + price + ", '" + package.Country + "', '" + package.Comment + "')";
+                command.ExecuteNonQuery();
+            }
+            catch (MySql.Data.MySqlClient.MySqlException errormessage)
+            {
+                Console.WriteLine("Exception: " + errormessage.Message);
+            }
+        }
+
+        public void DeletePackageByID(int Id)
         {
             try
             {
                 MySql.Data.MySqlClient.MySqlCommand command = conn.CreateCommand();
-                command.CommandText = "INSERT INTO Fragt (`id`, `date`) VALUES(10, 'test')";
+                command.CommandText = "DELETE FROM Fragt WHERE  id=" + Id;
                 command.ExecuteNonQuery();
             }
-            catch(MySql.Data.MySqlClient.MySqlException errormessage)
+            catch (MySql.Data.MySqlClient.MySqlException errormessage)
             {
                 Console.WriteLine("Exception: " + errormessage.Message);
             }

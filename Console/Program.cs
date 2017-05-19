@@ -38,7 +38,10 @@ namespace Console
                             System.Console.WriteLine("you are logged out");
                         break;
                     case "insert":
-                        sqlcon.InsertIntoFragt();
+                        Package package = new Package();
+                        PackageListController PLC = new PackageListController();
+                        package = PLC.GenerateRandomPackage();
+                        sqlcon.InsertIntoFragt(package);
                         break;
                     default:
                         break;
