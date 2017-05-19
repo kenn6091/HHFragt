@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows;
 using FragtSource;
 using HHFragtUI.Assets;
+using System.Windows.Controls;
 
 namespace HHFragtUI {
     /// <summary>
@@ -100,6 +101,16 @@ namespace HHFragtUI {
             {
                 MessageBoxResult result = MessageBox.Show("Kunne ikke søge inden for de givene dato'er. \n\n" + exception, "Error!");
             }
+        }
+
+        void StartDateTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            startDate.Text = "";
+        }
+
+        void EndDateTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            endDate.Text = "";
         }
 
         private void LoadSearch()

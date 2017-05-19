@@ -160,10 +160,10 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock Grid.Column="0" Grid.Row="0" Text="StartDato"/>
-                    <TextBox Name="startDate" Grid.Column="0" Grid.Row="1" Padding="2" Margin="0, 0, 20, 0" />
+                    <TextBox Name="startDate" Grid.Column="0" Grid.Row="1" Padding="2" Margin="0, 0, 20, 0" GotFocus="StartDateTextBox_GotFocus" />
 
                     <TextBlock Grid.Column="1" Grid.Row="0" Text="SlutDato"/>
-                    <TextBox Name="endDate" Grid.Column="1" Grid.Row="1" Padding="2" Margin="0, 0, 20, 0" />
+                    <TextBox Name="endDate" Grid.Column="1" Grid.Row="1" Padding="2" Margin="0, 0, 20, 0" GotFocus="EndDateTextBox_GotFocus" />
 
                     <Button Grid.Column="2" Grid.Row="1" Content="Søg" Click="Btn_search"/>
                 </Grid>
