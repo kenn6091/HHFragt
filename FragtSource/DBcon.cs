@@ -10,7 +10,7 @@ namespace FragtSource {
 
         //har prøvet * server=web80.meebox.net,3306 * & * server=web80.meebox.net:3306 * & * server=web80.meebox.net; port=3306; *
         //det er den første der burde virke...  den kommer til catch når man undlader at tilføje * ,3306 * alt andet crasher afik... QQ
-        private static string connectioString = "server=tcp:77.66.117.80;Database=dalumblk_Blaekpriser;User Id=dalumblk_kennethdorn;Password=123456;";
+        private static string connectioString = "server=web80.meebox.net:3306; Database=dalumblk_Blaekpriser; User Id=dalumblk_kennethdorn; Password=123456;";
 
         public void DatabaseUpdate(List<Package>Packages) {
 
