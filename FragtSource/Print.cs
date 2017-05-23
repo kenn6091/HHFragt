@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FragtSource {
     public class Print {
-        public void Printall(List<Package> packages) {
+        public void Printall(List<Package> packages, int gLSTotal, int uOmdelingTotal, int mOmdelingTotal, int brevTotal) {
 
             string path = @Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\Print.csv";
             TryToDelete(path);
@@ -17,6 +17,10 @@ namespace FragtSource {
                 string appendText = package.Date.ToString("dd/MM/yyyy") + ";" + package.Type.ToString() + ";" + package.Price.ToString() + ";" + package.Country.ToString() + ";" + package.Comment + Environment.NewLine;
                 File.AppendAllText(path, appendText, Encoding.UTF8);
             }
+            string appendText2 = Environment.NewLine + "GLS:;UOmdeling:;MOmdeling:;Brev:";
+            File.AppendAllText(path, appendText2, Encoding.UTF8);
+
+            string appendText3 = $"{gLSTotal};{uOmdelingTotal};{mOmdelingTotal};{brevTotal}";
         }
 
         private void TryToDelete(string path) {

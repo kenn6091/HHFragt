@@ -28,7 +28,7 @@ namespace FragtSource {
         public void AddPackageToList(Package package)
         {
             Package largestId = new Package();
-            if (packageList.Count > 0)
+            if (packageList != null && packageList.Count > 0)
             {
                 largestId = packageList.OrderByDescending(item => item.Id).First();
             }
@@ -71,12 +71,13 @@ namespace FragtSource {
 
         public Package GenerateRandomPackage()
         {
-            Package randompackage = new Package();
-            randompackage.Date = new DateTime(rnd.Next(2000, 2017), rnd.Next(1, 12), rnd.Next(1, 29),0,0,0);
-            randompackage.Type = GenerateRandomType(rnd.Next(1, 4));
-            randompackage.Country = GenerateRandomCountry(rnd.Next(1, 5));
-            randompackage.Price = rnd.Next(1, 99).ToString();
-
+            Package randompackage = new Package()
+            {
+                Date = new DateTime(rnd.Next(2000, 2017), rnd.Next(1, 12), rnd.Next(1, 29), 0, 0, 0),
+                Type = GenerateRandomType(rnd.Next(1, 4)),
+                Country = GenerateRandomCountry(rnd.Next(1, 5)),
+                Price = rnd.Next(1, 99).ToString()
+            };
             return randompackage;
         }
 
