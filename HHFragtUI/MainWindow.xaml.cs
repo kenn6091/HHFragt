@@ -33,13 +33,14 @@ namespace HHFragtUI {
         {
             try
             {
-                Package tempPackage = new Package();
-                tempPackage.Date = Convert.ToDateTime(DatoInput.Text);
-                tempPackage.Type = UdkastType.Text;
-                tempPackage.Country = UdkastCountry.Text;
-                tempPackage.Price = UdkastPrice.Text;
-                tempPackage.Comment = UdkastComment.Text;
-
+                Package tempPackage = new Package()
+                {
+                    Date = Convert.ToDateTime(DatoInput.Text),
+                    Type = UdkastType.Text,
+                    Country = UdkastCountry.Text,
+                    Price = UdkastPrice.Text,
+                    Comment = UdkastComment.Text
+                };
                 PLC.AddPackageToList(tempPackage);
                 LoadSearch();
                 packageDatagrid.ItemsSource = packageList;
@@ -79,7 +80,7 @@ namespace HHFragtUI {
             try
             {
                 Print print = new Print();
-                print.Printall(packageList);
+                print.Printall(this.packageList, GLSCalculated, UOmdelingCalculated, MOmdelingCalculated, BrevCalculated);
                 MessageBoxResult result = MessageBox.Show("Listen af pakker blev gemt i filen Print.csv på dit skrivebord.", "Print");
             }
             catch(Exception exception)
@@ -140,24 +141,31 @@ namespace HHFragtUI {
             MOmdelingCalculated = 0;
             BrevCalculated = 0;
 
-            foreach (var package in packageList)
+            try
             {
-                if (package.Type == "GLS")
+                foreach (var package in packageList)
                 {
-                    GLSCalculated++;
+                    if (package.Type == "GLS")
+                    {
+                        GLSCalculated++;
+                    }
+                    else if (package.Type == "U/Omdeling PostDanmark")
+                    {
+                        UOmdelingCalculated++;
+                    }
+                    else if (package.Type == "M/Omdeling PostDanmark")
+                    {
+                        MOmdelingCalculated++;
+                    }
+                    else if (package.Type == "Brev")
+                    {
+                        BrevCalculated++;
+                    }
                 }
-                else if (package.Type == "U/Omdeling PostDanmark")
-                {
-                    UOmdelingCalculated++;
-                }
-                else if (package.Type == "M/Omdeling PostDanmark")
-                {
-                    MOmdelingCalculated++;
-                }
-                else if (package.Type == "Brev")
-                {
-                    BrevCalculated++;
-                }
+            }
+            catch(Exception exception)
+            {
+                MessageBoxResult result = MessageBox.Show("Kunne ikke finde en liste over pakker.\nDette sker typisk hvis der endten ikke er forbindelse med databasen, eller databasen er tom. \n\n" + exception, "Error!");
             }
 
             totalsData.GLS = GLSCalculated;
