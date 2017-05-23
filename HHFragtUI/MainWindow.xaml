@@ -35,25 +35,44 @@
 
         <!-- TOP RIGHT -->
         <Label Grid.Row="0" Grid.Column="1" Content="Søg Fragt" FontWeight="Bold"/>
+        <Button Grid.Column="1" Content="Gem til fil" Background="White" Width="100" Height="20" Margin="530,0,0,0" Click="Btn_print"/>
 
         <!-- BOTTOM LEFT-->
-        <Border Grid.Column="0" Grid.Row="1" Margin="20, 10, 20, 0">
-            <StackPanel>
-                <!--Dato-->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+        <!--Dato-->
+        <Grid Grid.Column="0" Grid.Row="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <!--intput-->
+            <Grid Margin="20,10,20,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="*"/>
+                    
+                </Grid.RowDefinitions>
+                
+                <TextBlock Grid.Column="0" Grid.Row="0" Text="Dato (16/05/2017)*"/>
+                <TextBlock Grid.Column="1" Grid.Row="0" Text="* Skal Udfyldes"/>
 
-                    <TextBlock Grid.Column="0" Text="Dato (16/05/2017)*"/>
-                    <TextBlock Grid.Column="1" Text="* Skal Udfyldes"/>
-                </Grid>
-                <TextBox Padding="2" Margin="0, 0, 100, 0" Name="DatoInput" />
+                <TextBox Grid.Row="1" Name="DatoInput" />
 
                 <!-- Type -->
-                <TextBlock Text="Type*" Margin="0, 10, 0, 0"/>
-                <ComboBox Name="TypeInput" SelectedValuePath="Content">
+                <TextBlock Text="Type*" Grid.Row="2"/>
+                <ComboBox Name="TypeInput" Grid.Row="3" SelectedValuePath="Content">
                     <ComboBox.Text>
                         <Binding Source="{StaticResource ResourceKey=myDataSource}" Path="Type" UpdateSourceTrigger="PropertyChanged"/>
                     </ComboBox.Text>
@@ -64,84 +83,70 @@
                 </ComboBox>
 
                 <!-- Udland -->
-                <TextBlock Text="Udland" Margin="0, 10, 0, 0"/>
-                <TextBox Padding="2" Margin="0, 0, 100, 0" Name="LandInput">
+                <TextBlock Text="Udland" Grid.Row="4"/>
+                <TextBox Grid.Row="5" Name="LandInput">
                     <TextBox.Text>
                         <Binding Source="{StaticResource ResourceKey=myDataSource}" Path="Country" UpdateSourceTrigger="PropertyChanged"/>
                     </TextBox.Text>
                 </TextBox>
 
                 <!-- Pris -->
-                <TextBlock Text="Pris" Margin="0, 10, 0, 0"/>
-                <TextBox Padding="2" Margin="0, 0, 200, 0" Name="PrisInput">
+                <TextBlock Text="Pris" Grid.Row="6"/>
+                <TextBox Grid.Row="7" Name="PrisInput">
                     <TextBox.Text>
                         <Binding Source="{StaticResource ResourceKey=myDataSource}" Path="Price" UpdateSourceTrigger="PropertyChanged"/>
                     </TextBox.Text>
                 </TextBox>
 
                 <!-- Evt. Kommentar -->
-                <TextBlock Text="Kommentar" Margin="0, 10, 0, 0"/>
-                <TextBox Padding="2" Margin="0, 0, 100, -50" Name="KommentarInput">
+                <TextBlock Grid.Row="8" Text="Kommentar"/>
+                <TextBox Grid.Row="9" Name="KommentarInput">
                     <TextBox.Text>
                         <Binding Source="{StaticResource ResourceKey=myDataSource}" Path="Comment" UpdateSourceTrigger="PropertyChanged"/>
                     </TextBox.Text>
                 </TextBox>
+            </Grid>
+            
+            <!-- Udkast -->
+            <Grid Grid.Row="1" Background="White"  Margin="20,10,20,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
 
-                <!-- Udkast -->
-                <TextBlock Text="Udkast" Margin="0, 80, 0, 0"/>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Grid.Row="0" Text="Udkast"/>
 
-                    <Border Background="White" Margin="0, 0, 0, 0">
-                        <StackPanel>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="2*"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="Dato: " Margin="5, 0, 0, 0"/>
-                                <TextBlock Grid.Column="1" Name="UdkastDate" Text="{Binding ElementName=DatoInput, Path=Text}"/>
-                            </Grid>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="2*"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="Type: " Margin="5, 0, 0, 0"/>
-                                <TextBlock Grid.Column="1" Name="UdkastType" Text="{Binding ElementName=TypeInput, Path=Text}" />
-                            </Grid>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="2*"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="Land: " Margin="5, 0, 0, 0"/>
+                <TextBlock Grid.Column="0" Grid.Row="1" Text="Dato: "/>
+                <TextBlock Grid.Column="1" Grid.Row="1" Name="UdkastDate" Text="{Binding ElementName=DatoInput, Path=Text}"/>
 
-                                <TextBlock Grid.Column="1" Name="UdkastCountry" Text="{Binding ElementName=LandInput, Path=Text}" />
-                            </Grid>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="2*"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="Pris: " Margin="5, 0, 0, 0"/>
+                <TextBlock Grid.Column="0" Grid.Row="2" Text="Type: "/>
+                <TextBlock Grid.Column="1" Grid.Row="2" Name="UdkastType" Text="{Binding ElementName=TypeInput, Path=Text}"/>
 
-                                <TextBlock Grid.Column="1" Name="UdkastPrice" Text="{Binding ElementName=PrisInput, Path=Text}" />
-                            </Grid>
-                            <TextBlock Text="Kommentar: " Margin="5, 10, 0, 0"/>
-                            <TextBlock Name="UdkastComment" Text="{Binding ElementName=KommentarInput, Path=Text}" Margin="5, 0, 0, 0"/>
-                        </StackPanel>
-                    </Border>
+                <TextBlock Grid.Column="0" Grid.Row="3" Text="Land: "/>
+                <TextBlock Grid.Column="1" Grid.Row="3" Name="UdkastCountry" Text="{Binding ElementName=LandInput, Path=Text}"/>
 
-                    <!-- Gem Button -->
-                    <Button Grid.Column="1" Content="Gem" Margin="5, 190, 0, 0" Click="Btn_gem"/>
-                    <Button Grid.Column="1" Content="Save to file" Margin="5,170,0,20" Click="Btn_print"/>
-                </Grid>
-            </StackPanel>
-        </Border>
+                <TextBlock Grid.Column="0" Grid.Row="4" Text="Pris: "/>
+                <TextBlock Grid.Column="1" Grid.Row="4" Name="UdkastPrice" Text="{Binding ElementName=PrisInput, Path=Text}"/>
+
+                <TextBlock Text="Kommentar: " Grid.Column="0" Grid.Row="5" />
+                <TextBlock Name="UdkastComment" Grid.Column="1" Grid.Row="5" Text="{Binding ElementName=KommentarInput, Path=Text}"/>
+
+
+
+                <!-- Gem Button -->
+                <Button Grid.Column="0" Grid.ColumnSpan="2" Margin="100,-5,100,5" Grid.Row="6" Content="Gem" Click="Btn_gem"/>
+            </Grid>
+        </Grid>
+
 
         <!-- Søg Fragt -->
         <Border Grid.Column="1" Grid.Row="1" Margin="20, 10, 20, 0">
@@ -233,7 +238,7 @@
                     </Border>
 
                     <!-- Delete button -->
-                    <Button Grid.Column="2" Content="Delete" Margin="10, 20, 0, 0" Click="Btn_delete"/>
+                    <Button Grid.Column="2" Content="Slet" Margin="10, 20, 0, 0" Click="Btn_delete"/>
                 </Grid>
             </StackPanel>
         </Border>
