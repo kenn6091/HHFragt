@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,8 +12,21 @@ namespace FragtSource
 {
     public class SQLConnection
     {
-        private static string connectionstring = "server=web80.meebox.net; Database=dalumblk_Blaekpriser; User Id=dalumblk_kennethdorn; Password=123456;";
-        MySql.Data.MySqlClient.MySqlConnection conn = new MySql.Data.MySqlClient.MySqlConnection();
+        private static string connectionstring;
+        MySql.Data.MySqlClient.MySqlConnection conn;
+
+        public SQLConnection()
+        {
+            conn = new MySql.Data.MySqlClient.MySqlConnection();
+            try
+            {
+                connectionstring = GetDatabaseInformation();
+            }
+            catch(Exception errormessage)
+            {
+                Console.WriteLine("Error when retrieving connection string: " + errormessage);
+            }
+        }
 
         public void LogIn()
         {
@@ -50,6 +65,15 @@ namespace FragtSource
             }
         }
 
+        private string GetDatabaseInformation()
+        {
+            string connectionstring;
+            //string path = @Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\Connectionstring.txt";
+            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Connectionstring.txt");
+            connectionstring = File.ReadAllText(path, Encoding.UTF8);
+            return connectionstring;
+        }
+
         public void InsertIntoFragt(Package package)
         {
             try
@@ -58,7 +82,13 @@ namespace FragtSource
                 if (package.Price != "")
                     price = Convert.ToInt32(package.Price);
                 MySql.Data.MySqlClient.MySqlCommand command = conn.CreateCommand();
-                command.CommandText = "INSERT INTO Fragt (`id`, `date`, `type`, `price`, `country`, `comment`) VALUES (" + package.Id + ", '" + package.Date.ToString("dd/MM/yyyy") + "', '" + package.Type + "', " + price + ", '" + package.Country + "', '" + package.Comment + "')";
+                command.CommandText = "INSERT INTO Fragt (`id`, `date`, `type`, `price`, `country`, `comment`) VALUES (" 
+                    + package.Id + ", '" 
+                    + package.Date.ToString("dd/MM/yyyy") + "', '" 
+                    + package.Type + "', " 
+                    + price + ", '" 
+                    + package.Country + "', '" 
+                    + package.Comment + "')";
                 command.ExecuteNonQuery();
             }
             catch (MySql.Data.MySqlClient.MySqlException errormessage)
@@ -81,7 +111,7 @@ namespace FragtSource
             }
         }
 
-        public List<Package> updatelist()
+        public List<Package> Updatelist()
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand("SELECT * FROM Fragt", conn))
             {
