@@ -14,7 +14,7 @@ namespace FragtSource {
             packageList = new List<Package>();
 
             sqlcon.LogIn();
-            packageList = sqlcon.updatelist();
+            packageList = sqlcon.Updatelist();
             sqlcon.LogOut();
 
             //GenerateExamplePackages(50);
