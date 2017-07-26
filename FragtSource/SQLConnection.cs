@@ -18,51 +18,7 @@ namespace FragtSource
         public SQLConnection()
         {
             conn = new MySql.Data.MySqlClient.MySqlConnection();
-            try
-            {
                 connectionstring = GetDatabaseInformation();
-            }
-            catch(Exception errormessage)
-            {
-                Console.WriteLine("Error when retrieving connection string: " + errormessage);
-            }
-        }
-
-        public void LogIn()
-        {
-            try
-            {
-                conn.ConnectionString = connectionstring;
-                conn.Open();
-            }
-            catch (MySql.Data.MySqlClient.MySqlException errormessage)
-            {
-                Console.WriteLine("Error when logging in: " + errormessage);
-            }
-        }
-
-        public void LogOut()
-        {
-            try
-            {
-                conn.Close();
-            }
-            catch (MySql.Data.MySqlClient.MySqlException errormessage)
-            {
-                Console.WriteLine("Error when logging out: " + errormessage);
-            }
-        }
-
-        public bool LoggedIn()
-        {
-            if (conn.State == ConnectionState.Open)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
         }
 
         private string GetDatabaseInformation()
@@ -76,43 +32,42 @@ namespace FragtSource
 
         public void InsertIntoFragt(Package package)
         {
-            try
-            {
-                int price = 0;
-                if (package.Price != "")
-                    price = Convert.ToInt32(package.Price);
-                MySql.Data.MySqlClient.MySqlCommand command = conn.CreateCommand();
-                command.CommandText = "INSERT INTO Fragt (`id`, `date`, `type`, `price`, `country`, `comment`) VALUES (" 
-                    + package.Id + ", '" 
-                    + package.Date.ToString("dd/MM/yyyy") + "', '" 
-                    + package.Type + "', " 
-                    + price + ", '" 
-                    + package.Country + "', '" 
-                    + package.Comment + "')";
-                command.ExecuteNonQuery();
-            }
-            catch (MySql.Data.MySqlClient.MySqlException errormessage)
-            {
-                Console.WriteLine("Exception: " + errormessage.Message);
-            }
+            conn.ConnectionString = connectionstring;
+            conn.Open();
+
+            int price = 0;
+            if (package.Price != "")
+                price = Convert.ToInt32(package.Price);
+            MySql.Data.MySqlClient.MySqlCommand command = conn.CreateCommand();
+            command.CommandText = "INSERT INTO Fragt (`id`, `date`, `type`, `price`, `country`, `comment`) VALUES (" 
+                + package.Id + ", '" 
+                + package.Date.ToString("dd/MM/yyyy") + "', '" 
+                + package.Type + "', " 
+                + price + ", '" 
+                + package.Country + "', '" 
+                + package.Comment + "')";
+            command.ExecuteNonQuery();
+
+            conn.Close();
         }
 
         public void DeletePackageByID(int Id)
         {
-            try
-            {
-                MySql.Data.MySqlClient.MySqlCommand command = conn.CreateCommand();
-                command.CommandText = "DELETE FROM Fragt WHERE  id=" + Id;
-                command.ExecuteNonQuery();
-            }
-            catch (MySql.Data.MySqlClient.MySqlException errormessage)
-            {
-                Console.WriteLine("Exception: " + errormessage.Message);
-            }
+            conn.ConnectionString = connectionstring;
+            conn.Open();
+
+            MySql.Data.MySqlClient.MySqlCommand command = conn.CreateCommand();
+            command.CommandText = "DELETE FROM Fragt WHERE  id=" + Id;
+            command.ExecuteNonQuery();
+
+            conn.Close();
         }
 
         public List<Package> Updatelist()
         {
+            conn.ConnectionString = connectionstring;
+            conn.Open();
+
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand("SELECT * FROM Fragt", conn))
             {
                 try
@@ -135,13 +90,15 @@ namespace FragtSource
                             }
                         }
                     }
+                    conn.Close();
                     return tempList;
                 }
                 catch
                 {
+                    conn.Close();
                     return null;
                 }
-            }
+            }            
         }
     }
 }
