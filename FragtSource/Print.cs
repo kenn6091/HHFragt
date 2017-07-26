@@ -17,10 +17,11 @@ namespace FragtSource {
                 string appendText = package.Date.ToString("dd/MM/yyyy") + ";" + package.Type.ToString() + ";" + package.Price.ToString() + ";" + package.Country.ToString() + ";" + package.Comment + Environment.NewLine;
                 File.AppendAllText(path, appendText, Encoding.UTF8);
             }
-            string appendText2 = Environment.NewLine + "GLS:;UOmdeling:;MOmdeling:;Brev:";
+            string appendText2 = Environment.NewLine + "GLS:;MOmdeling:;UOmdeling:;Brev:";
             File.AppendAllText(path, appendText2, Encoding.UTF8);
 
-            string appendText3 = $"{gLSTotal};{uOmdelingTotal};{mOmdelingTotal};{brevTotal}";
+            string appendText3 = Environment.NewLine + $"{gLSTotal};{mOmdelingTotal};{uOmdelingTotal};{brevTotal}";
+            File.AppendAllText(path, appendText3, Encoding.UTF8);
         }
 
         private void TryToDelete(string path) {
